@@ -188,3 +188,12 @@ def get_working_days(year: int, include_saturday: bool = False, include_sunday: 
         start_date += timedelta(days=1)
 
     return working_days
+
+
+def get_holidays_during_weekend(year: int):
+    holiday_dates = set(holiday["date"] for holiday in get_holidays(year)
+                        if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
+
+    return holiday_dates
+
+print(get_holidays_during_weekend(2023))
