@@ -3,7 +3,7 @@ from datetime import timedelta, date
 from dateutil.easter import easter
 
 
-def get_holidays(year):
+def get_holidays(year: int):
     holidays = (
         {
             "holiday_name_cz": "Den obnovy samostatného českého státu",
