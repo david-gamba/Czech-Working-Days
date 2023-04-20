@@ -174,7 +174,7 @@ def get_working_days(year):
 
     while start_date <= end_date:
         if start_date not in holidays and start_date.strftime("%A") not in ("Sunday", "Saturday"):
-            working_days.append(start_date.isoformat())
+            working_days.append(start_date)
 
         start_date += timedelta(days=1)
 
