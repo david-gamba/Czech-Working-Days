@@ -164,8 +164,16 @@ def get_holidays(year):
     return holidays
 
 
-def get_working_days(year):
+def get_working_days(year, include_saturday=False, include_sunday=False):
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
+
+    weekend_days = ["Saturday", "Sunday"]
+
+    if include_saturday:
+        weekend_days.remove("Saturday")
+
+    if include_sunday:
+        weekend_days.remove("Sunday")
 
     working_days = list()
 
@@ -173,7 +181,8 @@ def get_working_days(year):
     end_date = date(year, 12, 31)
 
     while start_date <= end_date:
-        if start_date not in holiday_dates and start_date.strftime("%A") not in ("Sunday", "Saturday"):
+
+        if start_date not in holiday_dates and start_date.strftime("%A") not in weekend_days:
             working_days.append(start_date)
 
         start_date += timedelta(days=1)
