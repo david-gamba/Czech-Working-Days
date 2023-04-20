@@ -1,5 +1,5 @@
 
-from datetime import datetime, timedelta, date
+from datetime import timedelta, date
 from dateutil.easter import easter
 
 
@@ -164,3 +164,18 @@ def get_holidays(year):
     return holidays
 
 
+def get_working_days(year):
+    holidays = set(holiday["date"] for holiday in get_holidays(year))
+
+    working_days = list()
+
+    start_date = date(year, 1, 1)
+    end_date = date(year, 12, 31)
+
+    while start_date <= end_date:
+        if start_date not in holidays and start_date.strftime("%A") not in ("Sunday", "Saturday"):
+            working_days.append(start_date.isoformat())
+
+        start_date += timedelta(days=1)
+
+    return working_days
