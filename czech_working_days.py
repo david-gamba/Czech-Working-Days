@@ -164,7 +164,7 @@ def get_holidays(year):
     return holidays
 
 
-def get_working_days(year: int, include_saturday: bool = False, include_sunday: boolt = False) -> list:
+def get_working_days(year: int, include_saturday: bool = False, include_sunday: bool = False) -> list:
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
 
     weekend_days = ["Saturday", "Sunday"]
