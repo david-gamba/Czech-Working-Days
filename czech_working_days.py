@@ -3,7 +3,13 @@ from datetime import timedelta, date
 from dateutil.easter import easter
 
 
-def get_holidays(year: int):
+def get_holidays(year: int,
+                 dates_only: bool = False,
+                 dates_and_cz_names: bool = False,
+                 dates_and_en_names: bool = False):
+
+    # TODO - dodělat možnost vyfiltrování jen en a cz názvů a dat
+
     holidays = (
         {
             "holiday_name_cz": "Den obnovy samostatného českého státu",
@@ -160,6 +166,11 @@ def get_holidays(year: int):
         },
 
     )
+
+    if dates_only:
+        holiday_dates = set(holiday["date"] for holiday in holidays)
+        return holiday_dates
+
 
     return holidays
 
