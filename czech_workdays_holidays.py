@@ -275,11 +275,13 @@ def get_shopping_days(year: int,
                       include_sunday: bool = True,
                       exclude_shopping_restriced_days: bool = True) -> list:
     """
+    Gets all shopping days in a given year. Full year returned if all parameters are True. Possibility to combine
+    parameters
 
     :param year: Desired year to generate holidays (int)
     :param include_saturday: Includes also Saturdays in output
     :param include_sunday: Includes also Sundays in output
-    :param exclude_shopping_restriced_days: Excludes also shopping restricted days in output
+    :param exclude_shopping_restriced_days: Excludes shopping restricted days in output
     :return: List of all shopping days -> [datetime.date(2023, 1, 2), ...]
     """
 

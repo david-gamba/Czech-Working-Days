@@ -62,4 +62,29 @@ Notice that 2023/1/1 was a Sunday and Holiday and it is in the output. If one of
 [datetime.date(2023, 1, 1), datetime.date(2023, 1, 2), datetime.date(2023, 1, 3), ... , datetime.date(2023, 12, 31)]
 ```
 
-#### Example 2
+### get_shopping_days()
+
+Gets all shopping days in a given year. Full year returned if all parameters are True. Possibility to combine
+parameters
+
+In the output, 2023/1/1 is excluded as it is Sunday and shopping restricted day then 2023/30/12 is included
+as it is Saturday which has set default value to true: `include_saturday=True`. Then 2023/31/12 is excluded 
+as it is Sunday.
+
+```Python
+>>> from czech_workdays_holidays import get_shopping_days
+>>> get_shopping_days(2023, include_sunday=False, exclude_shopping_restriced_days=False)
+
+[datetime.date(2023, 1, 2), datetime.date(2023, 1, 3), ... , datetime.date(2023, 12, 29), datetime.date(2023, 12, 30)]
+```
+
+### get_holidays_during_weekend()
+
+Returns all holidays in given year that are during weekend
+
+```Python
+>>> from czech_workdays_holidays import get_holidays_during_weekend
+>>> get_holidays_during_weekend(2023)
+
+[datetime.date(2023, 1, 1), datetime.date(2023, 1, 1), datetime.date(2023, 10, 28), datetime.date(2023, 12, 24)]
+```
