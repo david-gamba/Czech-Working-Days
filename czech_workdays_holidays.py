@@ -208,27 +208,31 @@ def get_holidays(year: int,
     return holidays
 
 
-def get_working_days(year: int, include_saturday: bool = False, include_sunday: bool = False) -> list:
-    holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
+def get_working_days(year: int,
+                     include_saturday: bool = False,
+                     include_sunday: bool = False,
+                     include_shopping_restricted_days: bool = False) -> list:
+
+    if include_shopping_restricted_days:
+        holiday_dates = set(holiday["date"] for holiday in get_holidays(year, shopping_restricted=True))
+    else:
+        holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
 
     weekend_days = ["Saturday", "Sunday"]
-
     if include_saturday:
         weekend_days.remove("Saturday")
 
     if include_sunday:
         weekend_days.remove("Sunday")
 
+    # while loop variables
     working_days = list()
-
     start_date = date(year, 1, 1)
     end_date = date(year, 12, 31)
 
     while start_date <= end_date:
-
         if start_date not in holiday_dates and start_date.strftime("%A") not in weekend_days:
             working_days.append(start_date)
-
         start_date += timedelta(days=1)
 
     return working_days
