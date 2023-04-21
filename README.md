@@ -17,3 +17,5 @@ Data are valid since 2001. If selected year before 2001, exception is raised.
 ## Installation
 `pip install czech-workdays-holidays`
 
+## Import
+`import czech_workdays_holidays`
