@@ -10,6 +10,8 @@ def get_holidays(year: int,
                  shopping_restricted: bool = False):
 
     """
+    This function generates holidays (public and other) when working is usually restricted according to labor Law.
+    Also offers possibilities to filter dates only, czech or english names or shopping restricted days.
 
     :param year: Desired year to generate holidays (int)
     :param dates_only: Returns only dates -> [datetime.date(2023, 1, 1), ...]
@@ -24,6 +26,8 @@ def get_holidays(year: int,
     """
 
     holidays = [
+        # Except Good Friday and Easter Monday, all holidays has fixed date
+
         {
             "holiday_name_cz": "Den obnovy samostatného českého státu",
             "holiday_name_en": "Restoration Day of the Independent Czech State",
