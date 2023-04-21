@@ -49,7 +49,7 @@ This function calculates the number of workdays in a given year, taking into acc
 
 Raises exception if year entered is 2000 and earlier.
 
-#### Example 1
+#### Example
 
 Calling function `get_workdays()` with argument `include_ holidays=True` and with argument `include_sunday` will return sorted list of `datetime.date(YYYY/MM//DD)` workdays
 
@@ -71,6 +71,8 @@ In the output, 2023/1/1 is excluded as it is Sunday and shopping restricted day 
 as it is Saturday which has set default value to true: `include_saturday=True`. Then 2023/31/12 is excluded 
 as it is Sunday.
 
+#### Example
+
 ```Python
 >>> from czech_workdays_holidays import get_shopping_days
 >>> get_shopping_days(2023, include_sunday=False, exclude_shopping_restriced_days=False)
@@ -81,6 +83,8 @@ as it is Sunday.
 ### get_holidays_during_weekend()
 
 Returns all holidays in given year that are during weekend
+
+#### Example
 
 ```Python
 >>> from czech_workdays_holidays import get_holidays_during_weekend
