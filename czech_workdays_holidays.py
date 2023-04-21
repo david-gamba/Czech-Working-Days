@@ -165,8 +165,18 @@ def get_holidays(year: int,
         }
     ]
 
+    if shopping_restricted:
+        if year < 2016:
+            raise Exception("Shopping resctriction came into effect 1/10/2016 (DD/MM/YY)")
+        elif year == 2016:
+            holidays = list(filter(lambda x:
+                                   x["shopping_restricted"] is True and x["date"] > date(2016, 10, 1), holidays))
+        else:
+            holidays = list(filter(lambda x: x["shopping_restricted"] is True, holidays))
+
     if dates_only:
-        holiday_dates = list(set(holiday["date"] for holiday in holidays)).sort()
+        holiday_dates = list(set(holiday["date"] for holiday in holidays))
+        print(holiday_dates)
         return holiday_dates
 
     if dates_and_cz_names:
@@ -176,9 +186,11 @@ def get_holidays(year: int,
     if dates_and_en_names:
         holiday_dates_en_names = [[x["date"], x["holiday_name_cz"]] for x in holidays]
         return holiday_dates_en_names
-
+    print(holidays)
     return holidays
 
+get_holidays(2023, dates_only=True)
+get_holidays(2016, shopping_restricted=True, dates_only=True)
 
 def get_working_days(year: int, include_saturday: bool = False, include_sunday: bool = False) -> list:
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
