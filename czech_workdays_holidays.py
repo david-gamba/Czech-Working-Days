@@ -17,7 +17,6 @@ def get_holidays(year: int,
             "date": date(year, 1, 1),
             "fixed": True,
             "public_other": "State",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -28,7 +27,6 @@ def get_holidays(year: int,
             "date": date(year, 1, 1),
             "fixed": True,
             "public_other": "Other",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -39,7 +37,6 @@ def get_holidays(year: int,
             "date": date(year, 5, 1),
             "fixed": True,
             "public_other": "Other",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -50,7 +47,6 @@ def get_holidays(year: int,
             "date": date(year, 5, 8),
             "fixed": True,
             "public_other": "Public",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -61,7 +57,6 @@ def get_holidays(year: int,
             "date": date(year, 7, 5),
             "fixed": True,
             "public_other": "Public",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -72,7 +67,6 @@ def get_holidays(year: int,
             "date": date(year, 7, 6),
             "fixed": True,
             "public_other": "Public",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -83,7 +77,6 @@ def get_holidays(year: int,
             "date": date(year, 9, 28),
             "fixed": True,
             "public_other": "Public",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -94,7 +87,6 @@ def get_holidays(year: int,
             "date": date(year, 10, 28),
             "fixed": True,
             "public_other": "Public",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -105,7 +97,6 @@ def get_holidays(year: int,
             "date": date(year, 11, 17),
             "fixed": True,
             "public_other": "Public",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -116,7 +107,6 @@ def get_holidays(year: int,
             "date": date(year, 12, 24),
             "fixed": True,
             "public_other": "Other",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -127,7 +117,6 @@ def get_holidays(year: int,
             "date": date(year, 12, 25),
             "fixed": True,
             "public_other": "Other",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -138,7 +127,6 @@ def get_holidays(year: int,
             "date": date(year, 12, 26),
             "fixed": True,
             "public_other": "Other",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -149,7 +137,6 @@ def get_holidays(year: int,
             "date": easter(year) + timedelta(days=-2),
             "fixed": False,
             "public_other": "Other",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -160,7 +147,6 @@ def get_holidays(year: int,
             "date": easter(year) + timedelta(days=1),
             "fixed": False,
             "public_other": "Other",
-            "working_day": False,
             "description_en": "",
             "description_cz": ""
         },
@@ -170,7 +156,6 @@ def get_holidays(year: int,
     if dates_only:
         holiday_dates = set(holiday["date"] for holiday in holidays)
         return holiday_dates
-
 
     return holidays
 
@@ -201,7 +186,7 @@ def get_working_days(year: int, include_saturday: bool = False, include_sunday: 
     return working_days
 
 
-def get_holidays_during_weekend(year: int):
+def get_holidays_during_weekend(year: int) -> set:
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year)
                         if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
 
