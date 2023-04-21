@@ -9,6 +9,20 @@ def get_holidays(year: int,
                  dates_and_en_names: bool = False,
                  shopping_restricted: bool = False):
 
+    """
+
+    :param year: Desired year to generate holidays (int)
+    :param dates_only: Returns only dates -> [datetime.date(2023, 1, 1), ...]
+    :param dates_and_cz_names: Returns only dates and cz names
+            -> [[datetime.date(2023, 1, 1), 'Den obnovy samostatného českého státu'], ...]
+    :param dates_and_en_names: Returns only dates and cz names
+            -> [[datetime.date(2023, 1, 1), 'Restoration Day of the Independent Czech State'], ...]
+    :param shopping_restricted: If true, filters out only holidays when shopping is restricted
+            and can be combined with other parameters
+    :return: If dates or names not selected individually, returns list with dictionaries including information
+                about individual holidays
+    """
+
     holidays = [
         {
             "holiday_name_cz": "Den obnovy samostatného českého státu",
@@ -167,8 +181,9 @@ def get_holidays(year: int,
 
     if shopping_restricted:
         if year < 2016:
-            raise Exception("Shopping resctriction came into effect 1/10/2016 (DD/MM/YY)")
+            raise Exception("Shopping resctriction came into effect 01/10/2016 (DD/MM/YY)")
         elif year == 2016:
+            # shopping restricted holidays before legslation change is filtered out
             holidays = list(filter(lambda x:
                                    x["shopping_restricted"] is True and x["date"] > date(2016, 10, 1), holidays))
         else:
@@ -176,7 +191,6 @@ def get_holidays(year: int,
 
     if dates_only:
         holiday_dates = list(set(holiday["date"] for holiday in holidays))
-        print(holiday_dates)
         return holiday_dates
 
     if dates_and_cz_names:
@@ -184,13 +198,12 @@ def get_holidays(year: int,
         return holiday_dates_cz_names
 
     if dates_and_en_names:
-        holiday_dates_en_names = [[x["date"], x["holiday_name_cz"]] for x in holidays]
+        holiday_dates_en_names = [[x["date"], x["holiday_name_en"]] for x in holidays]
         return holiday_dates_en_names
-    print(holidays)
+
     return holidays
 
-get_holidays(2023, dates_only=True)
-get_holidays(2016, shopping_restricted=True, dates_only=True)
+print(get_holidays(2023, dates_and_en_names=True))
 
 def get_working_days(year: int, include_saturday: bool = False, include_sunday: bool = False) -> list:
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
@@ -218,8 +231,8 @@ def get_working_days(year: int, include_saturday: bool = False, include_sunday: 
     return working_days
 
 
-def get_holidays_during_weekend(year: int) -> set:
-    holiday_dates = set(holiday["date"] for holiday in get_holidays(year)
+def get_holidays_during_weekend(year: int) -> list:
+    holiday_dates = list(holiday["date"] for holiday in get_holidays(year)
                         if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
 
     return holiday_dates
