@@ -71,6 +71,8 @@ In the output, 2023/1/1 is excluded as it is Sunday and shopping restricted day 
 as it is Saturday which has set default value to true: `include_saturday=True`. Then 2023/31/12 is excluded 
 as it is Sunday.
 
+Raises exception if year entered is 2000 and earlier.
+
 #### Example
 
 ```Python
@@ -83,6 +85,8 @@ as it is Sunday.
 ### get_holidays_during_weekend()
 
 Returns all holidays in given year that are during weekend
+
+Raises exception if year entered is 2000 and earlier.
 
 #### Example
 
