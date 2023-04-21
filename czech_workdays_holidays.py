@@ -236,6 +236,16 @@ def get_working_days(year: int,
                      include_sunday: bool = False,
                      include_shopping_restricted_days: bool = False) -> list:
 
+    """
+
+    :param year: Desired year to generate holidays (int)
+    :param include_saturday: Includes also Saturdays in output
+    :param include_sunday: Includes also Sundays in output
+    :param include_shopping_restricted_days: Includes also shopping restricted days in output if not weekend.
+            Can be combined with include_saturday/sunday parameter
+    :return: List of all working days -> [datetime.date(2023, 1, 2), ...]
+    """
+
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
     if include_shopping_restricted_days:
         shopping_restricted = set(holiday["date"] for holiday in get_holidays(year, shopping_restricted=True))
@@ -266,3 +276,7 @@ def get_holidays_during_weekend(year: int) -> list:
                         if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
 
     return holiday_dates
+
+
+if __name__ == "__main__":
+    print(get_working_days(2023))
