@@ -51,7 +51,7 @@ Raises exception if year entered is 2000 and earlier.
 
 #### Example
 
-Calling function `get_workdays()` with argument `include_ holidays=True` and with argument `include_sunday` will return sorted list of `datetime.date(YYYY/MM//DD)` workdays
+Calling function `get_workdays()` with argument `include_holidays=True` and with argument `include_sunday` will return sorted list of `datetime.date(YYYY/MM//DD)` workdays
 
 Notice that 2023/1/1 was a Sunday and Holiday and it is in the output. If one of those arguments were False, it would not appear. 
 
