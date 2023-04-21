@@ -210,17 +210,16 @@ def get_holidays(year: int,
 
     return holidays
 
-print(get_holidays(2016, shopping_restricted=True))
 
 def get_working_days(year: int,
                      include_saturday: bool = False,
                      include_sunday: bool = False,
                      include_shopping_restricted_days: bool = False) -> list:
 
+    holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
     if include_shopping_restricted_days:
-        holiday_dates = set(holiday["date"] for holiday in get_holidays(year, shopping_restricted=True))
-    else:
-        holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
+        shopping_restricted = set(holiday["date"] for holiday in get_holidays(year, shopping_restricted=True))
+        holiday_dates.union(shopping_restricted)
 
     weekend_days = ["Saturday", "Sunday"]
     if include_saturday:
@@ -241,6 +240,7 @@ def get_working_days(year: int,
 
     return working_days
 
+print(get_working_days(2023, include_shopping_restricted_days=True))
 
 def get_holidays_during_weekend(year: int) -> list:
     holiday_dates = list(holiday["date"] for holiday in get_holidays(year)
