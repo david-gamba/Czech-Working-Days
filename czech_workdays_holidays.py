@@ -230,7 +230,6 @@ def get_holidays(year: int,
 
     return holidays
 
-get_holidays(2015)
 
 def get_working_days(year: int,
                      include_saturday: bool = False,
