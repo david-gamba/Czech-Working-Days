@@ -4,10 +4,10 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="Czech Working Days",                     # This is the name of the package
+    name="Czech Workdays and Holidays",                     # This is the name of the package
     version="0.0.1",                        # The initial release version
     author="David Gamba",                     # Full name of the author
-    description="Quicksample Test Package for SQLShack Demo",
+    description="Package to get Czech Workdays and Public Holidays",
     long_description=long_description,      # Long description read from the the readme file
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),    # List of all python modules to be installed
@@ -17,7 +17,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],                                      # Information to filter the project on PyPi website
     python_requires='>=3.6',                # Minimum version requirement of the package
-    py_modules=["czech-working-days"],             # Name of the python package
+    py_modules=["czech-workdays-holidays"],             # Name of the python package
     package_dir={'':'quicksample/src'},     # Directory of the source code of the package
     install_requires=[]                     # Install other dependencies if any
 )
