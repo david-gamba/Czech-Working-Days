@@ -25,6 +25,8 @@ def get_holidays(year: int,
     :return: If dates or names not selected individually, returns list with dictionaries including information
                 about individual holidays
     """
+    if year < 2001:
+        raise Exception("Data are valid since year 2001")
 
     holidays = [
         # Except Good Friday and Easter Monday, all holidays has fixed date
@@ -35,6 +37,7 @@ def get_holidays(year: int,
             "date": date(year, 1, 1),
             "fixed": True,
             "public_other": "State",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
@@ -46,6 +49,7 @@ def get_holidays(year: int,
             "date": date(year, 1, 1),
             "fixed": True,
             "public_other": "Other",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
@@ -57,6 +61,7 @@ def get_holidays(year: int,
             "date": easter(year) + timedelta(days=-2),
             "fixed": False,
             "public_other": "Other",
+            "valid_from": 2016,
             "shopping_restricted": False,
             "description_en": "",
             "description_cz": ""
@@ -68,6 +73,7 @@ def get_holidays(year: int,
             "date": easter(year) + timedelta(days=1),
             "fixed": False,
             "public_other": "Other",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
@@ -79,6 +85,7 @@ def get_holidays(year: int,
             "date": date(year, 5, 1),
             "fixed": True,
             "public_other": "Other",
+            "valid_from": 2001,
             "shopping_restricted": False,
             "description_en": "",
             "description_cz": ""
@@ -90,6 +97,7 @@ def get_holidays(year: int,
             "date": date(year, 5, 8),
             "fixed": True,
             "public_other": "Public",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
@@ -101,6 +109,7 @@ def get_holidays(year: int,
             "date": date(year, 7, 5),
             "fixed": True,
             "public_other": "Public",
+            "valid_from": 2001,
             "shopping_restricted": False,
             "description_en": "",
             "description_cz": ""
@@ -112,6 +121,7 @@ def get_holidays(year: int,
             "date": date(year, 7, 6),
             "fixed": True,
             "public_other": "Public",
+            "valid_from": 2001,
             "shopping_restricted": False,
             "description_en": "",
             "description_cz": ""
@@ -123,6 +133,7 @@ def get_holidays(year: int,
             "date": date(year, 9, 28),
             "fixed": True,
             "public_other": "Public",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
@@ -134,6 +145,7 @@ def get_holidays(year: int,
             "date": date(year, 10, 28),
             "fixed": True,
             "public_other": "Public",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
@@ -145,6 +157,7 @@ def get_holidays(year: int,
             "date": date(year, 11, 17),
             "fixed": True,
             "public_other": "Public",
+            "valid_from": 2001,
             "shopping_restricted": False,
             "description_en": "",
             "description_cz": ""
@@ -156,6 +169,7 @@ def get_holidays(year: int,
             "date": date(year, 12, 24),
             "fixed": True,
             "public_other": "Other",
+            "valid_from": 2001,
             "shopping_restricted": False,
             "description_en": "",
             "description_cz": ""
@@ -167,6 +181,7 @@ def get_holidays(year: int,
             "date": date(year, 12, 25),
             "fixed": True,
             "public_other": "Other",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
@@ -178,11 +193,16 @@ def get_holidays(year: int,
             "date": date(year, 12, 26),
             "fixed": True,
             "public_other": "Other",
+            "valid_from": 2001,
             "shopping_restricted": True,
             "description_en": "",
             "description_cz": ""
         }
     ]
+
+    if year < 2016:
+        # Removes Good Friday from holidays as it was not applicable till 2016 (Zákon č. 359/2015 Sb.)
+        holidays.pop(2)
 
     if shopping_restricted:
         if year < 2016:
@@ -210,6 +230,7 @@ def get_holidays(year: int,
 
     return holidays
 
+get_holidays(2015)
 
 def get_working_days(year: int,
                      include_saturday: bool = False,
@@ -240,7 +261,6 @@ def get_working_days(year: int,
 
     return working_days
 
-print(get_working_days(2023, include_shopping_restricted_days=True))
 
 def get_holidays_during_weekend(year: int) -> list:
     holiday_dates = list(holiday["date"] for holiday in get_holidays(year)
