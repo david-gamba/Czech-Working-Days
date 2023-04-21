@@ -8,11 +8,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "czech_workdays_holidays"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="David Gamba", email="gamba.d@seznam.cz" },
 ]
-description = "Czech Workdays and Holidays including work-restricted holidays"
+description = "Czech Workdays, Holidays and Shopping Days"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [

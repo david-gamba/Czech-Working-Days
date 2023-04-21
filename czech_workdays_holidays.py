@@ -1,4 +1,3 @@
-
 from datetime import timedelta, date
 from dateutil.easter import easter
 from warnings import warn
@@ -8,7 +7,7 @@ def get_holidays(year: int,
                  dates_only: bool = False,
                  dates_and_cz_names: bool = False,
                  dates_and_en_names: bool = False,
-                 shopping_restricted: bool = False):
+                 shopping_restricted: bool = False) -> list:
 
     """
     This function generates holidays (public and other) when working is usually restricted according to labor Law.
@@ -25,6 +24,27 @@ def get_holidays(year: int,
     :return: If dates or names not selected individually, returns list with dictionaries including information
                 about individual holidays
     """
+
+    # Verification for year data type
+    if not isinstance(year, int):
+        raise TypeError("Year must be an integer.")
+
+    # Verification for dates_only data type
+    if not isinstance(dates_only, bool):
+        raise TypeError("dates_only must be a boolean.")
+
+    # Verification for dates_and_cz_names data type
+    if not isinstance(dates_and_cz_names, bool):
+        raise TypeError("dates_and_cz_names must be a boolean.")
+
+    # Verification for dates_and_en_names data type
+    if not isinstance(dates_and_en_names, bool):
+        raise TypeError("dates_and_en_names must be a boolean.")
+
+    # Verification for shopping_restricted data type
+    if not isinstance(shopping_restricted, bool):
+        raise TypeError("shopping_restricted must be a boolean.")
+
     if year < 2001:
         raise Exception("Data are valid since year 2001")
 
@@ -247,6 +267,22 @@ def get_workdays(year: int,
     :return: List of all working days -> [datetime.date(2023, 1, 2), ...]
     """
 
+    # Verification for year data type
+    if not isinstance(year, int):
+        raise TypeError("Year must be an integer.")
+
+    # Verification for include_saturday data type
+    if not isinstance(include_saturday, bool):
+        raise TypeError("include_saturday must be a boolean.")
+
+    # Verification for include_sunday data type
+    if not isinstance(include_sunday, bool):
+        raise TypeError("include_sunday must be a boolean.")
+
+    # Verification for include_holidays data type
+    if not isinstance(include_holidays, bool):
+        raise TypeError("include_holidays must be a boolean.")
+
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year)) if not include_holidays else set()
 
     weekend_days = ["Saturday", "Sunday"]
@@ -285,6 +321,22 @@ def get_shopping_days(year: int,
     :return: List of all shopping days -> [datetime.date(2023, 1, 2), ...]
     """
 
+    # Verification for year data type
+    if not isinstance(year, int):
+        raise TypeError("Year must be an integer.")
+
+    # Verification for include_saturday data type
+    if not isinstance(include_saturday, bool):
+        raise TypeError("include_saturday must be a boolean.")
+
+    # Verification for include_sunday data type
+    if not isinstance(include_sunday, bool):
+        raise TypeError("include_sunday must be a boolean.")
+
+    # Verification for exclude_shopping_restricted_days data type
+    if not isinstance(exclude_shopping_restriced_days, bool):
+        raise TypeError("exclude_shopping_restricted_days must be a boolean.")
+
     weekend_days = list()
     if not include_sunday:
         weekend_days.append("Sunday")
@@ -309,6 +361,11 @@ def get_shopping_days(year: int,
 
 
 def get_holidays_during_weekend(year: int) -> list:
+
+    # Verification for year data type
+    if not isinstance(year, int):
+        raise TypeError("Year must be an integer.")
+
     holiday_dates = list(holiday["date"] for holiday in get_holidays(year)
                         if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
 
