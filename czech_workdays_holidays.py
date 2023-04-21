@@ -1,6 +1,7 @@
 
 from datetime import timedelta, date
 from dateutil.easter import easter
+from warnings import warn
 
 
 def get_holidays(year: int,
@@ -190,6 +191,8 @@ def get_holidays(year: int,
             # shopping restricted holidays before legslation change is filtered out
             holidays = list(filter(lambda x:
                                    x["shopping_restricted"] is True and x["date"] > date(2016, 10, 1), holidays))
+            warn("Shopping resctriction came into effect 01/10/2016 (DD/MM/YY) thus holidays that are usually "
+                 "shopping restricted are not filtered. This applies only for year 2016")
         else:
             holidays = list(filter(lambda x: x["shopping_restricted"] is True, holidays))
 
@@ -207,6 +210,7 @@ def get_holidays(year: int,
 
     return holidays
 
+print(get_holidays(2016, shopping_restricted=True))
 
 def get_working_days(year: int,
                      include_saturday: bool = False,
