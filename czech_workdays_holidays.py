@@ -231,25 +231,23 @@ def get_holidays(year: int,
     return holidays
 
 
-def get_working_days(year: int,
-                     include_saturday: bool = False,
-                     include_sunday: bool = False,
-                     include_shopping_restricted_days: bool = False) -> list:
+def get_workdays(year: int,
+                 include_saturday: bool = False,
+                 include_sunday: bool = False,
+                 include_holidays: bool = False) -> list:
 
     """
 
     :param year: Desired year to generate holidays (int)
     :param include_saturday: Includes also Saturdays in output
     :param include_sunday: Includes also Sundays in output
-    :param include_shopping_restricted_days: Includes also shopping restricted days in output if not weekend.
+    :param include_holidays: Counts holidays as working days
+    :param shopping_days: Includes also shopping restricted days in output if not weekend.
             Can be combined with include_saturday/sunday parameter
     :return: List of all working days -> [datetime.date(2023, 1, 2), ...]
     """
 
-    holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
-    if include_shopping_restricted_days:
-        shopping_restricted = set(holiday["date"] for holiday in get_holidays(year, shopping_restricted=True))
-        holiday_dates.union(shopping_restricted)
+    holiday_dates = set(holiday["date"] for holiday in get_holidays(year)) if not include_holidays else set()
 
     weekend_days = ["Saturday", "Sunday"]
     if include_saturday:
@@ -266,6 +264,7 @@ def get_working_days(year: int,
     while start_date <= end_date:
         if start_date not in holiday_dates and start_date.strftime("%A") not in weekend_days:
             working_days.append(start_date)
+
         start_date += timedelta(days=1)
 
     return working_days
@@ -276,3 +275,5 @@ def get_holidays_during_weekend(year: int) -> list:
                         if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
 
     return holiday_dates
+
+print(get_workdays(2023, include_holidays=True, include_sunday=True))
