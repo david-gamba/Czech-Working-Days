@@ -276,7 +276,3 @@ def get_holidays_during_weekend(year: int) -> list:
                         if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
 
     return holiday_dates
-
-
-if __name__ == "__main__":
-    print(get_working_days(2023))
