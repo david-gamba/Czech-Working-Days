@@ -10,7 +10,7 @@ def get_holidays(year: int,
 
     # TODO - dodělat možnost vyfiltrování jen en a cz názvů a dat
 
-    holidays = (
+    holidays = [
         {
             "holiday_name_cz": "Den obnovy samostatného českého státu",
             "holiday_name_en": "Restoration Day of the Independent Czech State",
@@ -26,6 +26,26 @@ def get_holidays(year: int,
             "holiday_name_en": "New Year's Day",
             "date": date(year, 1, 1),
             "fixed": True,
+            "public_other": "Other",
+            "description_en": "",
+            "description_cz": ""
+        },
+
+        {
+            "holiday_name_cz": "Velký pátek",
+            "holiday_name_en": "St. Stephen's Day",
+            "date": easter(year) + timedelta(days=-2),
+            "fixed": False,
+            "public_other": "Other",
+            "description_en": "",
+            "description_cz": ""
+        },
+
+        {
+            "holiday_name_cz": "Velikonoční pondělí",
+            "holiday_name_en": "Easter Monday",
+            "date": easter(year) + timedelta(days=1),
+            "fixed": False,
             "public_other": "Other",
             "description_en": "",
             "description_cz": ""
@@ -129,36 +149,24 @@ def get_holidays(year: int,
             "public_other": "Other",
             "description_en": "",
             "description_cz": ""
-        },
-
-        {
-            "holiday_name_cz": "Velký pátek",
-            "holiday_name_en": "St. Stephen's Day",
-            "date": easter(year) + timedelta(days=-2),
-            "fixed": False,
-            "public_other": "Other",
-            "description_en": "",
-            "description_cz": ""
-        },
-
-        {
-            "holiday_name_cz": "Velikonoční pondělí",
-            "holiday_name_en": "Easter Monday",
-            "date": easter(year) + timedelta(days=1),
-            "fixed": False,
-            "public_other": "Other",
-            "description_en": "",
-            "description_cz": ""
-        },
-
-    )
+        }
+    ]
 
     if dates_only:
-        holiday_dates = set(holiday["date"] for holiday in holidays)
+        holiday_dates = list(set(holiday["date"] for holiday in holidays)).sort()
         return holiday_dates
+
+    if dates_and_cz_names:
+        holiday_dates_cz_names = [[x["date"], x["holiday_name_cz"]] for x in holidays]
+        return holiday_dates_cz_names
+
+    if dates_and_en_names:
+        holiday_dates_en_names = [[x["date"], x["holiday_name_cz"]] for x in holidays]
+        return holiday_dates_en_names
 
     return holidays
 
+print(get_holidays(2023))
 
 def get_working_days(year: int, include_saturday: bool = False, include_sunday: bool = False) -> list:
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
