@@ -77,7 +77,7 @@ def get_holidays(year: int,
 
         {
             "holiday_name_cz": "Velký pátek",
-            "holiday_name_en": "St. Stephen's Day",
+            "holiday_name_en": "Good Friday",
             "date": easter(year) + timedelta(days=-2),
             "fixed": False,
             "public_other": "Other",
@@ -101,7 +101,7 @@ def get_holidays(year: int,
 
         {
             "holiday_name_cz": "Svátek práce",
-            "holiday_name_en": "Labor Day",
+            "holiday_name_en": "Labour Day",
             "date": date(year, 5, 1),
             "fixed": True,
             "public_other": "Other",
