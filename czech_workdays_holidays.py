@@ -207,7 +207,6 @@ def get_holidays(year: int,
 
     return holidays
 
-print(get_holidays(2023, dates_and_en_names=True))
 
 def get_working_days(year: int, include_saturday: bool = False, include_sunday: bool = False) -> list:
     holiday_dates = set(holiday["date"] for holiday in get_holidays(year))
