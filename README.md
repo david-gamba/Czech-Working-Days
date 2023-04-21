@@ -34,7 +34,7 @@ This function generates holidays (public and other) when working is usually rest
 Raises exception if year entered is 2000 and earlier.
 #### Example
 
-Calling function `get_holidays()` with argument `dates_only=True` will return unsorted list of `datetime.date(YYYY/MM//DD)` holidays
+Calling function `get_holidays()` with argument `dates_only=True` will return unsorted list
 
 ```Python
 >>> from czech_workdays_holidays import get_holidays
@@ -45,15 +45,15 @@ Calling function `get_holidays()` with argument `dates_only=True` will return un
 
 ### get_workdays()
 
-This function calculates the number of workdays in a given year, taking into account optional parameters for including or excluding weekend days and holidays.
+This function calculates the number of workdays in a given year, taking into account optional parameters for including or excluding weekend days and holidays
 
-Raises exception if year entered is 2000 and earlier.
+Raises exception if year entered is 2000 and earlier
 
 #### Example
 
 Calling function `get_workdays()` with argument `include_holidays=True` and with argument `include_sunday` will return sorted list of `datetime.date(YYYY/MM//DD)` workdays
 
-Notice that 2023/1/1 was a Sunday and Holiday and it is in the output. If one of those arguments were False, it would not appear. 
+Notice that 2023/1/1 was a Sunday and Holiday and it is in the output. If one of those arguments were False, it would not appear
 
 ```Python
 >>> from czech_workdays_holidays import get_workdays
