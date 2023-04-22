@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "czech_workdays_holidays"
-version = "0.1.3"
+version = "0.1.4"
 authors = [
   { name="David Gamba", email="gamba.d@seznam.cz" },
 ]

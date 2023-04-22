@@ -77,7 +77,7 @@ Raises exception if year entered is 2000 and earlier.
 
 ```Python
 >>> from czech_workdays_holidays import get_shopping_days
->>> get_shopping_days(2023, include_sunday=False, exclude_shopping_restriced_days=False)
+>>> get_shopping_days(2023, include_sunday=False, exclude_shopping_restricted_days=False)
 
 [datetime.date(2023, 1, 2), datetime.date(2023, 1, 3), ... , datetime.date(2023, 12, 29), datetime.date(2023, 12, 30)]
 ```
