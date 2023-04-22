@@ -94,5 +94,5 @@ Raises exception if year entered is 2000 and earlier.
 >>> from czech_workdays_holidays import get_holidays_during_weekend
 >>> get_holidays_during_weekend(2023)
 
-[datetime.date(2023, 1, 1), datetime.date(2023, 1, 1), datetime.date(2023, 10, 28), datetime.date(2023, 12, 24)]
+[datetime.date(2023, 1, 1), datetime.date(2023, 10, 28), datetime.date(2023, 12, 24)]
 ```
