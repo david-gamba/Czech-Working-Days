@@ -235,7 +235,7 @@ def get_holidays(year: int,
             warn("Shopping resctriction came into effect 01/10/2016 (DD/MM/YY) thus holidays that are usually "
                  "shopping restricted are not filtered. This applies only for year 2016")
         else:
-            holidays = list(filter(lambda x: x["shopping_restricted"] is True, holidays))
+            holidays = list(filter(lambda holiday: holiday["shopping_restricted"] is True, holidays))
 
     if dates_only:
         holiday_dates = list(set(holiday["date"] for holiday in holidays))
