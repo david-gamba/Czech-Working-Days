@@ -25,19 +25,18 @@ class TestGetHolidays(unittest.TestCase):
         holidays = set(get_holidays(year, dates_only=True))
         self.assertSetEqual(holidays, expected_holidays)
 
-    def test_shopping_restriction_before_2016(self):
-        year = randint(2001, 2015)
-
-        expected_result = Exception("Shopping resctriction came into effect 01/10/2016 (DD/MM/YY)")
-
-        with self.assertRaises(Exception):
-            get_holidays(year, shopping_restricted=True)
-
     def test_shopping_restriction_during_2016(self):
         year = 2016
         expected_holidays = {date(year, 10, 28), date(year, 12, 25), date(year, 12, 26)}
         holidays = set(get_holidays(year, dates_only=True,shopping_restricted=True))
         self.assertSetEqual(holidays, expected_holidays)
+
+    def test_holidays_during_weekend_2023(self):
+        year = 2023
+        expected_holidays = [date(2023, 1, 1), date(2023, 1, 1), date(2023, 10, 28), date(2023, 12, 24)]
+        holidays = get_holidays_during_weekend(2023)
+        self.assertEqual(expected_holidays, holidays)
+
 
     def test_dates_and_cz_names(self):
         year = 2023
@@ -77,6 +76,8 @@ class TestGetHolidays(unittest.TestCase):
         holidays = get_holidays(year, dates_and_en_names=True)
         self.assertEqual(holidays, expected_holidays)
 
+
+class TestGetWorkdays(unittest.TestCase):
     def test_get_workdays_2023(self):
         year = 2023
         expected_number = 250
@@ -101,6 +102,16 @@ class TestGetHolidays(unittest.TestCase):
 
         result = len(get_workdays(2023, include_saturday=True))
         self.assertEqual(expected_number, result)
+
+
+class TestGetShoppingDays(unittest.TestCase):
+    def test_shopping_restriction_before_2016(self):
+        year = randint(2001, 2015)
+
+        expected_result = Exception("Shopping resctriction came into effect 01/10/2016 (DD/MM/YY)")
+
+        with self.assertRaises(Exception):
+            get_holidays(year, shopping_restricted=True)
 
 
 class TestAssertRaises(unittest.TestCase):
