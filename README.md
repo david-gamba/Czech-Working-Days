@@ -10,6 +10,9 @@ Working with workdays, you always have to select year. Additionally, you can cho
 as workday. Combinations of these parameters
 are possible.
 
+Working with workdays, you always have to select year.Additionally, you can choose to exclude Saturdays and Sundays 
+and/or include shopping restricted days.
+
 Data are valid since 2001. If selected year before 2001, exception is raised.
 
 #### Informational sources
