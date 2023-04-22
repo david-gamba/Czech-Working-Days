@@ -7,7 +7,7 @@ Working with holidays, you always have to select year. Additionally, you can cho
 English or Czech names of holidays or holidays that are working restricted.
 
 Working with workdays, you always have to select year. Additionally, you can choose to include Saturday and Sunday
-as workday and you can also include working restriced holidays as workdays. Combinations of these parameters
+as workday. Combinations of these parameters
 are possible.
 
 Data are valid since 2001. If selected year before 2001, exception is raised.
