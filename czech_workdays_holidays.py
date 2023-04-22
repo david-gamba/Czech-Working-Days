@@ -263,8 +263,6 @@ def get_workdays(year: int,
     :param include_saturday: Includes also Saturdays in output
     :param include_sunday: Includes also Sundays in output
     :param include_holidays: Counts holidays as working days
-    :param shopping_days: Includes also shopping restricted days in output if not weekend.
-            Can be combined with include_saturday/sunday parameter
     :return: List of all working days -> [datetime.date(2023, 1, 2), ...]
     """
 
