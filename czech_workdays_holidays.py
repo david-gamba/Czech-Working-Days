@@ -233,7 +233,7 @@ def get_holidays(year: int,
                                    holiday["shopping_restricted"] is True and holiday["date"] > date(2016, 10, 1),
                                    holidays))
             warn("Shopping resctriction came into effect 01/10/2016 (DD/MM/YY) thus holidays that are usually "
-                 "shopping restricted are not filtered. This applies only for year 2016")
+                 "shopping restricted are not filtered before this day. This applies only for year 2016")
         else:
             holidays = list(filter(lambda holiday: holiday["shopping_restricted"] is True, holidays))
 
