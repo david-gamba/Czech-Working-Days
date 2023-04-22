@@ -308,7 +308,8 @@ def get_workdays(year: int,
 def get_shopping_days(year: int,
                       include_saturday: bool = True,
                       include_sunday: bool = True,
-                      exclude_shopping_restriced_days: bool = True) -> list:
+                      exclude_shopping_restricted_days: bool = True) -> list:
+
     """
     Gets all shopping days in a given year. Full year returned if all parameters are True. Possibility to combine
     parameters
@@ -316,7 +317,7 @@ def get_shopping_days(year: int,
     :param year: Desired year to generate holidays (int)
     :param include_saturday: Includes also Saturdays in output
     :param include_sunday: Includes also Sundays in output
-    :param exclude_shopping_restriced_days: Excludes shopping restricted days in output
+    :param exclude_shopping_restricted_days: Excludes shopping restricted days in output
     :return: List of all shopping days -> [datetime.date(2023, 1, 2), ...]
     """
 
@@ -333,7 +334,7 @@ def get_shopping_days(year: int,
         raise TypeError("include_sunday must be a boolean.")
 
     # Verification for exclude_shopping_restricted_days data type
-    if not isinstance(exclude_shopping_restriced_days, bool):
+    if not isinstance(exclude_shopping_restricted_days, bool):
         raise TypeError("exclude_shopping_restricted_days must be a boolean.")
 
     weekend_days = list()
@@ -342,7 +343,7 @@ def get_shopping_days(year: int,
     if not include_saturday:
         weekend_days.append("Saturday")
 
-    if exclude_shopping_restriced_days:
+    if exclude_shopping_restricted_days:
         shopping_restricted_days = set(holiday["date"] for holiday in get_holidays(year, shopping_restricted=True))
     else:
         shopping_restricted_days = set()
