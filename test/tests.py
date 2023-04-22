@@ -77,6 +77,31 @@ class TestGetHolidays(unittest.TestCase):
         holidays = get_holidays(year, dates_and_en_names=True)
         self.assertEqual(holidays, expected_holidays)
 
+    def test_get_workdays_2023(self):
+        year = 2023
+        expected_number = 250
+
+        result = len(get_workdays(2023))
+        self.assertEqual(result, expected_number)
+
+    def test_get_workdays_2023_with_sundays(self):
+        year = 2023
+        sundays = 53
+        holidays_in_sunday = 2
+        expected_number = 250 + sundays - holidays_in_sunday
+
+        result = len(get_workdays(2023, include_sunday=True))
+        self.assertEqual(expected_number, result)
+
+    def test_get_workdays_2023_with_saturdays(self):
+        year = 2023
+        saturdays = 52
+        holidays_in_saturday = 1
+        expected_number = 250 + saturdays - holidays_in_saturday
+
+        result = len(get_workdays(2023, include_saturday=True))
+        self.assertEqual(expected_number, result)
+
 
 class TestAssertRaises(unittest.TestCase):
 
