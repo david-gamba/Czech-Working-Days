@@ -242,11 +242,11 @@ def get_holidays(year: int,
         return holiday_dates
 
     if dates_and_cz_names:
-        holiday_dates_cz_names = [[x["date"], x["holiday_name_cz"]] for x in holidays]
+        holiday_dates_cz_names = [[holiday["date"], holiday["holiday_name_cz"]] for holiday in holidays]
         return holiday_dates_cz_names
 
     if dates_and_en_names:
-        holiday_dates_en_names = [[x["date"], x["holiday_name_en"]] for x in holidays]
+        holiday_dates_en_names = [[holiday["date"], holiday["holiday_name_en"]] for holiday in holidays]
         return holiday_dates_en_names
 
     return holidays
