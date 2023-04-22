@@ -16,7 +16,7 @@ Data are valid since 2001. If selected year before 2001, exception is raised.
 [Czech holidays in English](https://en.wikipedia.org/wiki/Public_holidays_in_the_Czech_Republic)  
 [Czech holidys in Czech](https://cs.wikipedia.org/wiki/%C4%8Cesk%C3%BD_st%C3%A1tn%C3%AD_sv%C3%A1tek)
 
-#### Legislation sources
+#### Legal sources
 [Czech Holidays](https://www.zakonyprolidi.cz/cs/2000-245?text=245%2F2000)  
 [Restricted shopping days](https://www.zakonyprolidi.cz/cs/2016-223)
 
