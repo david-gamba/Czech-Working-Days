@@ -383,7 +383,7 @@ def get_workdays_during_weekend(year: int, include_holidays: bool = False) -> li
 
     workdays = get_workdays(year, include_saturday=True, include_sunday=True, include_holidays=include_holidays)
 
-    holidays_during_weekend = list(workday for workday in workdays
+    workdays_during_weekend = list(workday for workday in workdays
                                    if workday.strftime("%A") in ("Saturday", "Sunday"))
 
-    return holidays_during_weekend
+    return workdays_during_weekend
