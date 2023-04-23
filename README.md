@@ -104,3 +104,22 @@ Raises exception if year entered is 2000 and earlier.
 
 [datetime.date(2023, 1, 1), datetime.date(2023, 10, 28), datetime.date(2023, 12, 24)]
 ```
+
+### get_workdays_during_weekend()
+
+Returns all workdays in given year that are during weekend with possibility to exclude Sunday/Saturday
+and include holidays. If weekend parameters set to True and `include_holidays=False` the function would
+not return workdays that are during weekend and are holidays.
+
+Raises exception if year entered is 2000 and earlier.
+
+In example below, 1/1/2023 and 24/12/2023 are excluded as it is Sunday and holiday.
+
+#### Example
+
+```Python
+>>> from czech_workdays_holidays import get_workdays_during_weekend
+>>> get_workdays_during_weekend(2023)
+
+[datetime.date(2023, 1, 7), datetime.date(2023, 1, 8), datetime.date(2023, 1, 14), ... , datetime.date(2023, 12, 23), datetime.date(2023, 12, 30), datetime.date(2023, 12, 31)]
+```
