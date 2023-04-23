@@ -8,7 +8,6 @@ def get_holidays(year: int,
                  dates_and_cz_names: bool = False,
                  dates_and_en_names: bool = False,
                  shopping_restricted: bool = False) -> list:
-
     """
     This function generates holidays (public and other) when working is usually restricted according to labor Law.
     Also offers possibilities to filter dates only, czech or english names or shopping restricted days.
@@ -256,7 +255,6 @@ def get_workdays(year: int,
                  include_saturday: bool = False,
                  include_sunday: bool = False,
                  include_holidays: bool = False) -> list:
-
     """
 
     :param year: Desired year to generate holidays (int)
@@ -309,7 +307,6 @@ def get_shopping_days(year: int,
                       include_saturday: bool = True,
                       include_sunday: bool = True,
                       exclude_shopping_restricted_days: bool = True) -> list:
-
     """
     Gets all shopping days in a given year. Full year returned if all parameters are True. Possibility to combine
     parameters
@@ -361,12 +358,27 @@ def get_shopping_days(year: int,
 
 
 def get_holidays_during_weekend(year: int) -> list:
-
     # Verification for year data type
     if not isinstance(year, int):
         raise TypeError("Year must be an integer.")
 
     holiday_dates = list(holiday["date"] for holiday in get_holidays(year)
-                        if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
+                         if holiday["date"].strftime("%A") in ("Saturday", "Sunday"))
 
     return holiday_dates
+
+
+def get_workdays_during_weekend(year: int, include_holidays: bool = False) -> list:
+    # Verification for year data type
+    if not isinstance(year, int):
+        raise TypeError("Year must be an integer.")
+
+    workdays = get_workdays(year, include_saturday=True, include_sunday=True, include_holidays=include_holidays)
+
+    holidays_during_weekend = list(workday for workday in workdays
+                                   if workday.strftime("%A") in ("Saturday", "Sunday"))
+
+    return holidays_during_weekend
+
+
+print(get_workdays_during_weekend(2023, include_holidays=False))
