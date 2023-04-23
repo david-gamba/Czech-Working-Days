@@ -369,6 +369,14 @@ def get_holidays_during_weekend(year: int) -> list:
 
 
 def get_workdays_during_weekend(year: int, include_holidays: bool = False) -> list:
+
+    """
+    Gets all workdays that are during weekend (Saturday or Sunday) with possibility to include holidays
+    :param year: Desired year to generate holidays (int)
+    :param include_holidays: Considers holidays as working days if True
+    :return: List of all workdays during weekend in a given year
+    """
+
     # Verification for year data type
     if not isinstance(year, int):
         raise TypeError("Year must be an integer.")
