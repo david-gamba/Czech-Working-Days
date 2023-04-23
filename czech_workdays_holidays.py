@@ -387,6 +387,3 @@ def get_workdays_during_weekend(year: int, include_holidays: bool = False) -> li
                                    if workday.strftime("%A") in ("Saturday", "Sunday"))
 
     return holidays_during_weekend
-
-
-print(get_workdays_during_weekend(2023, include_holidays=False))
