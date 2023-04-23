@@ -53,7 +53,7 @@ This function calculates the number of workdays in a given year, taking into acc
 By default, function return workdays in a given year. If parameters are set to False, it will return Monday to Friday days.
 
 In case you set `include_saturday=True`, it will return Monday to Saturday days but Saturdays that are also holidays would be excluded.  
-In case you set `include_holidays=True`, including weekend days would remain False then holidays during weekend would not be returned.
+In case you set `include_holidays=True` and including weekend days would remain False then holidays during weekend would not be returned.
 
 Raises exception if year entered is 2000 and earlier
 
