@@ -381,6 +381,10 @@ def get_workdays_during_weekend(year: int, include_holidays: bool = False) -> li
     if not isinstance(year, int):
         raise TypeError("Year must be an integer.")
 
+    # Verification for include_holidays data type
+    if not isinstance(include_holidays, bool):
+        raise TypeError("include_holidays must be a boolean.")
+
     workdays = get_workdays(year, include_saturday=True, include_sunday=True, include_holidays=include_holidays)
 
     workdays_during_weekend = list(workday for workday in workdays
