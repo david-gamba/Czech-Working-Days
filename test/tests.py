@@ -1,8 +1,22 @@
 import unittest
+import subprocess
+import sys
 from datetime import date, timedelta
 from dateutil.easter import easter
 from czech_workdays_holidays import get_holidays, get_workdays, get_shopping_days, get_holidays_during_weekend
 from random import randint
+
+
+class TestPackageImport(unittest.TestCase):
+    def test_import_has_no_output(self):
+        result = subprocess.run(
+            [sys.executable, "-c", "import czech_workdays_holidays"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        self.assertEqual(result.stdout, "")
+        self.assertEqual(result.stderr, "")
 
 
 class TestGetHolidays(unittest.TestCase):
